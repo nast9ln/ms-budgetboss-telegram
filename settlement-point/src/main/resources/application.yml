@@ -1,0 +1,17 @@
+bot:
+  name: BudgeFamilyBoss_bot
+  token: ${TELEGRAM_TOKEN}
+spring:
+  datasource:
+    url: jdbc:postgresql://${DATABASE_HOST_PORT:localhost:5400}/postgres
+    username: postgres
+    driver-class-name: org.postgresql.Driver
+    password: postgres
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8080

@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+
+  fin-service:
+    image: 'fin-service:1.0.1'
+    container_name: fin-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      DATABASE_HOST_PORT: host.docker.internal:5400
+
+  postgres:
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5400:5432"
+    restart: always
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
